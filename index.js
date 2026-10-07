@@ -114,3 +114,88 @@ function gameObject() {
         },
     };
 }
+function numPointsScored(playerName) {
+    const game = gameObject();
+
+    for (const team of ["home", "away"]) {
+        if (game[team].players[playerName]) {
+            return game[team].players[playerName].points;
+        }
+    }
+}
+function shoeSize(playerName){
+    const game = gameObject();
+
+    for(const team of ["home","away"]) {
+        if(game[team].players[playerName]){
+            return game[team].players[playerName].shoe
+        }
+}
+}
+function teamColors(teamName) {
+    const game = gameObject();
+
+    for (const team of ["home", "away"]) {
+        if (game[team].teamName === teamName) {
+            return game[team].colors;
+        }
+    }
+}
+function teamNames() {
+    const game = gameObject();
+
+    return [
+        game.home.teamName,
+        game.away.teamName
+    ];
+}
+function playerNumbers(teamName) {
+    const game = gameObject();
+
+    for (const team of ["home", "away"]) {
+        if (game[team].teamName === teamName) {
+            const players = game[team].players;
+            const numbers = [];
+
+            for (const player in players) {
+                numbers.push(players[player].number);
+            }
+
+            return numbers;
+        }
+    }
+}
+
+function playerStats(playerName) {
+    const game = gameObject();
+
+    for (const team of ["home", "away"]) {
+        const player = game[team].players[playerName];
+
+        if (player) {
+            return player;
+        }
+    }
+}
+
+function bigShoeRebounds() {
+    const game = gameObject();
+    let biggestShoe = 0;
+    let rebounds = 0;
+
+    for (const team of ["home", "away"]) {
+        const players = game[team].players;
+
+        for (const player in players) {
+            if (players[player].shoe > biggestShoe) {
+                biggestShoe = players[player].shoe;
+                rebounds = players[player].rebounds;
+            }
+        }
+    }
+
+    return rebounds;
+}
+
+
+console.log(teamColors("Home"))
